@@ -1,6 +1,5 @@
 package com.pt.fruit.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,12 +20,15 @@ public class TaskController {
 	PTApiUtil ptApiUtil;
 	
 
+	//메인뷰로 이동
 	@GetMapping("/main")
 	public String main() {
 		System.out.println("main 접속");
 		return "main/main";
 	}
 	
+	
+	//Category 리스트를 불러옵니다.
 	@GetMapping("/getCategoryList") 
 	@ResponseBody
 	public List<String> getCategory(){
@@ -36,11 +38,15 @@ public class TaskController {
 										 .collect(Collectors.toList());
 	}
 	
+	
+	// 상품의 가격정보를 불러옵니다.
 	@GetMapping("/getPrice")
 	@ResponseBody
 	public Map<String, Object> getPrice(String category, String name) {
 		System.out.println("getPrice 접속");
 		Map<String, Object> result = new HashMap<>();
+		
+		//TODO 카테고리체크
 		
 		try {
 			String price = ptApiUtil.getPrice(Category.titleToCategory(category), name);
@@ -49,16 +55,18 @@ public class TaskController {
 			e.printStackTrace();
 			result.put("error",e.getMessage());
 		}
-		
 		return result;
-		
 	}
 	
+	// 
 	@GetMapping("/getProductList")
 	@ResponseBody
 	public Map<String, Object> getProductList(String category) {
 		System.out.println("getProductList 접속");
 		Map<String, Object> result = new HashMap<>();
+		
+		//TODO 카테고리체크
+		
 		try {
 			List<String> productList = ptApiUtil.searchProductList(Category.titleToCategory(category));
 			result.put("productList", productList);
@@ -71,13 +79,14 @@ public class TaskController {
 		
 	}
 	
+	
 	public static void main(String[] args) {
 //		System.out.println(Category.FRUIT.getPath());
 //		Arrays.stream(Category.values())
 //			  .forEach(item -> {
 //				  System.out.println(item.name());
 //			  });
-		Category a = Category.FRUIT;
-		System.out.println(a == Category.FRUIT);
+//		Category a = Category.FRUIT;
+//		System.out.println(a == Category.FRUIT);
 	}
 }
