@@ -4,6 +4,10 @@
 <head>
 	<title>Home</title>
 </head>
+<script type="text/javascript">
+	let contextPath = '${pageContext.request.contextPath}';
+	location.href = contextPath + '/main';
+</script>
 <body>
 <h1>
 	Hello world!  

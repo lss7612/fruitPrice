@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>청과류가격</title>
 <script type="text/javascript">
 const contextPath = '${pageContext.request.contextPath}';
 </script>
