@@ -17,7 +17,7 @@ public interface PTApiService {
 	public Call<Map<String, String>> getToken();
 	
 	@GET("token")
-	public Call<String> getToken2();
+	public Call<String> getVesetableToken();
 
 	//가격조회
 	@GET("{endPoint}")

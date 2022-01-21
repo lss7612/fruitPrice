@@ -16,13 +16,12 @@ const contextPath = '${pageContext.request.contextPath}';
     <select id="category" onChange="getProductList()">
     	<option value="0">category 선택</option>
     </select>
-    <select id="product" onChange="getPrice()">
+    <select id="product">
     	<option value="0">category 먼저 선택하세요</option>
     </select>
     <button id="btn_search">조회</button>
 </div>
-<div>
-	
+<div id="result">
 </div>
 
 </body>

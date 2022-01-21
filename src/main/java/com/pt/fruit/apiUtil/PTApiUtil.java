@@ -68,7 +68,7 @@ public class PTApiUtil {
 			else throw new Exception(category + "토큰 발급 실패");
 		case VESETABLE:
 			PTApiService stringRest = makeStringRestService(category.getPath());
-			Response<String> responseVes = stringRest.getToken2().execute();
+			Response<String> responseVes = stringRest.getVesetableToken().execute();
 			if(responseVes.isSuccessful()) return responseVes.headers().get("Set-Cookie").split(";")[0].split("=")[1];
 		default:
 			throw new Exception("Category에 포함되지 않은 category입니다 : " + category);

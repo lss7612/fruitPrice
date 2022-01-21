@@ -54,6 +54,8 @@ function getProductList() {
 			alert('서버연결실패');
 		}
 	})
+	
+	document.getElementById('result').innerHTML = '';
 }
 
 
@@ -80,6 +82,7 @@ function getPrice() {
 		data : {category : category, name : name},
 		success : function(result) {
 			console.debug(result);
+			document.getElementById('result').innerHTML = result.price + '원';
 		},
 		error : function() {
 			alert('서버연결실패')
