@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
-	NULL("NULL","NULL","NULL"),
+	NULL(null,null,null),
 	FRUIT("과일","fruit","product"),
 	VESETABLE("채소","vegetable","item")
 	;
@@ -30,6 +30,9 @@ public enum Category {
 		return endPoint;
 	}
 	
+	/**
+	 * @return Category의 value를 리스트로 반환
+	 */
 	public static List<String> getCategoryList() {
 		
 		List<String> result = new ArrayList<String>();
@@ -37,17 +40,29 @@ public enum Category {
 			String title = Category.values()[i].getTitle();
 			result.add(title);
 		}
-		
 		return result;
 	}
 	
+	/**
+	 * title에 해당하는 Category enum 반환
+	 * @param title - enum의 타이틀
+	 * @return
+	 */
 	public static Category titleToCategory(String title) {
 		return Arrays.stream(Category.values())
-				     .filter(category -> category.getTitle().equals(title))
+					 .filter(category -> category.getTitle() != null && category.getTitle().equals(title))
 				     .findAny()
 				     .orElse(NULL);
 	}
 	
+	/**
+	 * title에 해당하는 ENUM이 NULL인가?
+	 * @param title - enum의 타이틀
+	 * @return 맞으면 true 아니면 false
+	 */
+	public static boolean isNull(String title) {
+		return titleToCategory(title) == Category.NULL;
+	}
 	
 	
 }

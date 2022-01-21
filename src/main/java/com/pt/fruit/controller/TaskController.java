@@ -28,26 +28,38 @@ public class TaskController {
 	}
 	
 	
-	//Category 리스트를 불러옵니다.
+	/**
+	 * Category 리스트를 불러옵니다.
+	 */
 	@GetMapping("/getCategoryList") 
 	@ResponseBody
 	public List<String> getCategory(){
 		System.out.println("getCategory 접속");
 		return Category.getCategoryList().stream()
-										 .filter(cate -> !cate.equals("NULL"))
+										 .filter(cate -> cate != null)
 										 .collect(Collectors.toList());
 	}
 	
 	
-	// 상품의 가격정보를 불러옵니다.
+	/**
+	 * 상품의 가격정보를 불러옵니다.
+	 * @param category - 웹에서 선택한 카테고리
+	 * @param name - 웹에서 선택한 상품명
+	 * @return - 상품의 가격정보
+	 */
 	@GetMapping("/getPrice")
 	@ResponseBody
 	public Map<String, Object> getPrice(String category, String name) {
 		System.out.println("getPrice 접속");
 		Map<String, Object> result = new HashMap<>();
 		
-		//TODO 카테고리체크
+		// 카테고리체크
+		if(Category.isNull(category)) {
+			result.put("error","그런 카테고리는 없습니다");
+			return result;
+		}
 		
+		// 통신메서드 호출
 		try {
 			String price = ptApiUtil.getPrice(Category.titleToCategory(category), name);
 			result.put("price",price);
@@ -58,15 +70,24 @@ public class TaskController {
 		return result;
 	}
 	
-	// 
+	/**
+	 * 상품의 리스트를 불러옵니다.
+	 * @param category - 웹에서 선택한 카테고리
+	 * @return - 상품 리스트
+	 */
 	@GetMapping("/getProductList")
 	@ResponseBody
 	public Map<String, Object> getProductList(String category) {
 		System.out.println("getProductList 접속");
 		Map<String, Object> result = new HashMap<>();
 		
-		//TODO 카테고리체크
+		// 카테고리체크
+		if(Category.isNull(category)) {
+			result.put("error","그런 카테고리는 없습니다");
+			return result;
+		}
 		
+		// 통신메서드 호출
 		try {
 			List<String> productList = ptApiUtil.searchProductList(Category.titleToCategory(category));
 			result.put("productList", productList);
