@@ -10,7 +10,6 @@ const contextPath = '${pageContext.request.contextPath}';
 </script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main/main.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main/main.js"></script>
 </head>
 <body>
 <div>

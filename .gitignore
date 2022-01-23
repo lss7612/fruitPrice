@@ -71,6 +71,8 @@ local.properties
 ###BJPARK add (2020 1129)
 target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 target/m2e-wtp/web-resources/META-INF/maven/a.b/c/pom.properties
+target/m2e-wtp/web-resources/META-INF/maven/com.pt/fruit/pom.properties
+
 
 ##12/12
 .DS_Store
